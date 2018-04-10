@@ -1,15 +1,15 @@
 import tarantool
 
-con = tarantool.connect(port=3300, user='guest')
+connection = tarantool.connect(port=3300, user='guest')
 
-space = con.space('test')
+space = connection.space('test')
 
 for i in range(10):
 	space.insert((None, i, 'hello'+str(i)))
 
 print(space.select())
 
-con.eval('box.space.test:create_index("value", {unique = false, parts = {2,"unsigned"}})')
+connection.eval('box.space.test:create_index("value", {unique = false, parts = {2,"unsigned"}})')
 
 print(space.select(index=1))
 

@@ -18,8 +18,6 @@ box.once("schema", function()
    box.schema.user.grant('guest', 'read,write,execute', 'universe')
    box.schema.user.grant('replicator', 'replication') -- grant replication role
    box.schema.space.create("test")
-   -- box.schema.sequence.create('S')
-   -- box.space.test:create_index("primary", {sequence='S', parts = {1,'unsigned', 2, 'unsigned'}})
    box.space.test:create_index("primary", {type = 'hash', parts = {1,'string'}})
    print('box.once executed')
 end)
