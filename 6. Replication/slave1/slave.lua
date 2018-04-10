@@ -1,5 +1,3 @@
-
-
 box.cfg{
   listen      = 3303,
   replication = {'replicator:password@127.0.0.1:3301',  -- master1 URI

@@ -1,5 +1,3 @@
-local uuid = require('uuid')
-
 box.cfg{
   listen      = 3301,
   replication = {'replicator:password@127.0.0.1:3301',  -- master1 URI
@@ -8,10 +6,6 @@ box.cfg{
   read_only   = false,
   hot_standby = true
 }
-
-function insert(...)
-  box.space.test:insert({uuid.str(), ...})
-end
 
 box.once("schema", function()
    box.schema.user.create('replicator', {password = 'password'})
@@ -22,3 +16,7 @@ box.once("schema", function()
    print('box.once executed')
 end)
 
+local uuid = require('uuid')
+function insert(...)
+  box.space.test:insert({uuid.str(), ...})
+end
